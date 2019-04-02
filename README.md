@@ -1,0 +1,1 @@
+Learning about core algorithms and data structures including number bases, string algorithms, arrays, linked lists, python lists, stacks, queues, sets, circular buffers, maps, hash tables, trees (especially binary search trees) and tree traversal algorithms. 
