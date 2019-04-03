@@ -113,24 +113,61 @@ def encode(number, base):
     print(result)
     return result
 
+def convert(digits, base1, base2):
+    """Convert given digits in base1 to digits in base2.
+    digits: str -- string representation of number (in base1)
+    base1: int -- base of given number
+    base2: int -- base to convert to
+    return: str -- string representation of number (in base2)"""
+    # Handle up to base 36 [0-9, a-z]
+    assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
+    assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
 
-# def convert(digits, base1, base2):
-#     """Convert given digits in base1 to digits in base2.
-#     digits: str -- string representation of number (in base1)
-#     base1: int -- base of given number
-#     base2: int -- base to convert to
-#     return: str -- string representation of number (in base2)"""
-#     # Handle up to base 36 [0-9a-z]
-#     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
-#     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-#     # TODO: Convert digits from base 2 to base 16 (and vice versa)
-#     # ...
-#     # TODO: Convert digits from base 2 to base 10 (and vice versa)
-#     # ...
-#     # TODO: Convert digits from base 10 to base 16 (and vice versa)
-#     # ...
-#     # TODO: Convert digits from any base to any base (2 up to 36)
-#     # ...
+    base10 = 0 # keep track of the overall base10
+    power = 0 # starting at the 0th power
+
+    # Traverse the string backwards (from the right)
+    for i in range(len(digits)-1, -1, -1):
+        # If the current digit is a number, just grab the value
+        if digits[i].isdigit():
+            digit = int(digits[i])
+            # print(digits[i], digit)
+        else:
+            num = digits[i]
+            digit = hex_dict[num.upper()]
+            # print(digits[i], digit)
+        # Multiply current digit by base raised to the current power
+        digit *= base1 ** power
+        # Add the current digit's translated value to base10
+        base10 += digit
+        # Increment the power value to represent moving to the next place value
+        power += 1
+
+    remainder = 0 # Keep track of the remainders
+    string_list = [] # Keep track of the strings
+
+    # Keep dividing until the input number is zero
+    while base10 != 0:
+        # Update remainder
+        remainder = base10 % base2
+
+        # Update input base10
+        base10 = base10 // base2
+
+        # If remainder maps to a decimal number, then put that into the list
+        if remainder < 10:
+            string_list.insert(0, str(remainder))
+        # otherwise check dict for value
+        else:
+            for key, val in hex_dict.items():
+                if val == remainder:
+                    string_list.insert(0, key.lower())
+
+    # join list and return the result
+    result = ""
+    result = result.join(string_list)
+    print(result)
+    return result
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
@@ -151,8 +188,10 @@ def main():
 if __name__ == '__main__':
     main()
 
-    decode_hex("FFF") # output: 4095
-    decode("11010110", 2) # output: 214
-    encode(10, 16) # output: a
-    encode(100, 16) # output: 64
-    encode(10, 2) # output: 1010
+    # Testing my code out
+    # decode_hex("FFF") # output: 4095
+    # decode("11010110", 2) # output: 214
+    # encode(10, 16) # output: a
+    # encode(100, 16) # output: 64
+    # encode(10, 2) # output: 1010
+    convert("1010", 2, 25)

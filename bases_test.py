@@ -1,4 +1,4 @@
-from bases import decode, encode#, convert
+from bases import decode, encode, convert
 import unittest
 
 
