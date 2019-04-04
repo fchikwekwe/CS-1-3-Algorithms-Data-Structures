@@ -34,27 +34,55 @@ def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    return binary_search_iterative(array, item)
-    # return binary_search_recursive(array, item)
+    # return binary_search_iterative(array, item)
+    return binary_search_recursive(array, item)
 
 
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
-    found = False
-    while len(array) > 1 and found == False:
-        left = 0
-        right = len(array) - 1
-        midpoint = right//2
-        if item 
-    # once implemented, change binary_search to call binary_search_iterative
-    # to verify that your iterative implementation passes all tests
+    left = 0
+    right = len(array) - 1
 
+    while left <= right:
+        midpoint = (left + right) // 2
+        print("midpoint: ", midpoint)
+        # if len(array) == 1
+        if item == array[midpoint]:
+            print("array {}, item {}, midpoint {}".format(array, item, midpoint))
+            return midpoint
+        elif array[midpoint] < item:
+            print("array {}, item {}, midpoint {}".format(array, item, midpoint))
+            print("I'm HERE")
+            left = midpoint + 1
+        else:
+            print("array {}, item {}, midpoint {}".format(array, item, midpoint))
+            print("The item is lower")
+            right = midpoint - 1
+
+    return None
 
 def binary_search_recursive(array, item, left=None, right=None):
-    # TODO: implement binary search recursively here
-    pass
-    # once implemented, change binary_search to call binary_search_recursive
-    # to verify that your recursive implementation passes all tests
+    # give left and right values for first iteration
+    if left is None:
+        left = 0
+        right = len(array)
+
+    midpoint = (left + right - 1) // 2
+
+    if left > right: # base case 1
+        print("array {}, item, {}, left {}, right {}, midpoint {}".format(array, item, left, right, midpoint))
+        return None
+    elif array[midpoint] == item: #base case 2 a
+        print("array {}, item, {}, left {}, right {}, midpoint {}".format(array, item, left, right, midpoint))
+        return midpoint
+    elif array[midpoint] < item:
+        print("array {}, item, {}, left {}, right {}, midpoint {}".format(array, item, left, right, midpoint))
+        return binary_search_recursive(array, item, midpoint + 1, right)
+    else:
+        print("array {}, item, {}, left {}, right {}, midpoint {}".format(array, item, left, right, midpoint))
+        return binary_search_recursive(array, item, left, midpoint - 1)
+
 
 if __name__ == '__main__':
-    print(linear_search([3, 4, 2, 1, 7], 8))
+    # print(linear_search([3, 4, 2, 1, 7], 8))
+    print(binary_search([1, 3, 4, 5, 6], 6))
