@@ -40,16 +40,20 @@ def binary_search(array, item):
 
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
-    left = 0
-    right = len(array) - 1
 
+    left = 0 # initial range starts at zero
+    right = len(array) - 1 # initial range ends at end of list
+
+    # make sure start is lower than end of range
     while left <= right:
+        # keep track of middle value
         midpoint = (left + right) // 2
-        print("midpoint: ", midpoint)
-        # if len(array) == 1
+
+        # if the midpoint value is target, return midpoint position
         if item == array[midpoint]:
-            print("array {}, item {}, midpoint {}".format(array, item, midpoint))
             return midpoint
+
+        # if the target is bigger than midpoint value, range starting value
         elif array[midpoint] < item:
             print("array {}, item {}, midpoint {}".format(array, item, midpoint))
             print("I'm HERE")
@@ -86,4 +90,4 @@ def binary_search_recursive(array, item, left=None, right=None):
 
 if __name__ == '__main__':
     # print(linear_search([3, 4, 2, 1, 7], 8))
-    print(binary_search([1, 3, 4, 5, 6], 7))
+    # print(binary_search([1, 3, 4, 5, 6], 7))
