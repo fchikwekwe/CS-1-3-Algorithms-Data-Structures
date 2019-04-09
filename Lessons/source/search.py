@@ -17,18 +17,13 @@ def linear_search_iterative(array, item):
 
 
 def linear_search_recursive(array, item, index=0):
-    # TODO: implement linear search recursively here
+    # implement linear search recursively here
     if index >= len(array): # base case 1
         return None
     elif item == array[index]: # base case 2
         return index
     else:
-        print("array: {}, item: {}, index: {}".format(array, item, index))
         return linear_search_recursive(array, item, index + 1)
-
-    # once implemented, change linear_search to call linear_search_recursive
-    # to verify that your recursive implementation passes all tests
-
 
 def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
@@ -39,7 +34,7 @@ def binary_search(array, item):
 
 
 def binary_search_iterative(array, item):
-    # TODO: implement binary search iteratively here
+    # implement binary search iteratively here
 
     left = 0 # initial range starts at zero
     right = len(array) - 1 # initial range ends at end of list
@@ -55,39 +50,39 @@ def binary_search_iterative(array, item):
 
         # if the target is bigger than midpoint value, range starting value
         elif array[midpoint] < item:
-            print("array {}, item {}, midpoint {}".format(array, item, midpoint))
-            print("I'm HERE")
             left = midpoint + 1
         else:
-            print("array {}, item {}, midpoint {}".format(array, item, midpoint))
-            print("The item is lower")
             right = midpoint - 1
 
     return None
 
 def binary_search_recursive(array, item, left=None, right=None):
-    # give left and right values for first iteration
-    if left is None:
+    # first time through, you have to set left and right values to span whole list
+    if left is None and right is None: # make sure that both or neither value is set
         left = 0
         right = len(array) - 1
+    elif left is None or right is None: # one of these values wasn't set
+        raise AssertionError("Please provide both left AND right, or neither.")
 
-    midpoint = (left + right) // 2
-    print("array {} item {} midpoint {} left {} right {}".format(array, item, midpoint, left, right))
-    if left > right: # base case 1
+    midpoint = (left + right) // 2 # keep track of middle value
+
+    if left > right: # base case 1, searched whole list
         return None
 
-    if array[midpoint] == item: #base case 2
-        print(midpoint)
+    if array[midpoint] == item: # base case 2, found item
         return midpoint
 
-    # if the item is larger than midpoint value, search right of midpoint
+    # if item is larger than midpoint value, search right of midpoint
     if array[midpoint] < item:
-        return binary_search_recursive(array, item, midpoint + 1, right)
+        left = midpoint + 1
+        return binary_search_recursive(array, item, left, right)
 
-    # item must be smaller than midpoint value, search left of midpoint
-    return binary_search_recursive(array, item, left, midpoint - 1)
+    # item is smaller than midpoint value, search left of midpoint
+    right = midpoint - 1
+    return binary_search_recursive(array, item, left, right)
 
 
 if __name__ == '__main__':
     # print(linear_search([3, 4, 2, 1, 7], 8))
     # print(binary_search([1, 3, 4, 5, 6], 7))
+    print(binary_search_recursive([1, 3, 4, 5, 6], 7, left=1))

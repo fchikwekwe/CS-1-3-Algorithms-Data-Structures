@@ -1,6 +1,7 @@
 #!python
 
 import string
+import re
 # Hint: Use these string constants to ignore capitalization and/or punctuation
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -19,10 +20,25 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    pass
-    # once implemented, change is_palindrome to call is_palindrome_iterative
-    # to verify that your iterative implementation passes all tests
 
+    # regex to remove punctuation and whitespace and lower letters
+    cleaned_text = re.compile('\s|\W').sub('', text).lower()
+    print(repr(cleaned_text))
+
+    # keep track of letters going forwards and backwards
+    forwards = 0
+    backwards = len(cleaned_text) - 1
+
+    palindrome = True
+    while forwards < backwards and palindrome:
+        print("forwards {}, backwards {}, cleaned_text {}".format(forwards, backwards, cleaned_text))
+        if cleaned_text[forwards] == cleaned_text[backwards]:
+            forwards += 1
+            backwards -= 1
+        else:
+            palindrome = False
+            return False
+    return True
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
@@ -47,3 +63,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    is_palindrome_iterative("Race car!")
