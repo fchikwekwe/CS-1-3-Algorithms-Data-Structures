@@ -17,28 +17,36 @@ def is_palindrome(text):
     return is_palindrome_iterative(text)
     # return is_palindrome_recursive(text)
 
-
 def is_palindrome_iterative(text):
-    # TODO: implement the is_palindrome function iteratively here
-
-    # regex to remove punctuation and whitespace and lower letters
-    cleaned_text = re.compile('\s|\W').sub('', text).lower()
-    print(repr(cleaned_text))
-
     # keep track of letters going forwards and backwards
     forwards = 0
-    backwards = len(cleaned_text) - 1
+    backwards = len(text) - 1
 
-    palindrome = True
-    while forwards < backwards and palindrome:
-        print("forwards {}, backwards {}, cleaned_text {}".format(forwards, backwards, cleaned_text))
-        if cleaned_text[forwards] == cleaned_text[backwards]:
+    # until the indices cross over one another
+    while forwards < backwards:
+        forward_letter = text[forwards].lower()
+        backward_letter = text[backwards].lower()
+        # if forward_letter is not alphanumeric, then increment forwards
+        # and start the loop over
+        if forward_letter.isalnum() is False:
+            forwards += 1
+            continue
+
+        # if backward_letter is not alphanumeric, then decrement backwards
+        # and start the loop over
+        if backward_letter.isalnum() is False:
+            backwards -= 1
+            continue
+
+        # if the letters are the same, then this is still possibly a palindrome
+        if forward_letter == backward_letter:
             forwards += 1
             backwards -= 1
+        # if not, then its not a palindrome
         else:
-            palindrome = False
             return False
     return True
+
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
@@ -62,5 +70,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-    is_palindrome_iterative("Race car!")
+    # main()
+    # is_palindrome_iterative("Race car!")
+    print(is_palindrome_iterative2("Race car!"))
