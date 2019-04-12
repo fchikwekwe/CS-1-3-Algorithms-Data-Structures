@@ -98,7 +98,7 @@ def find_all_indexes(text, pattern):
         return match
 
     # Check if we passed the end of the text
-    while text_length > text_index:
+    while text_length >= text_index:
         # check if zeroth indices of text and pattern match
         if target_index == 0 and pattern[target_index] == text[text_index]:
             match.append(text_index)
@@ -115,6 +115,7 @@ def find_all_indexes(text, pattern):
             # If we passed the end of the pattern only then we have found a match
             # reset to find the next match
             if target_index > target_length:
+                # text_index -= 1
                 target_index = 0
                 continue
         # If it is not a match and were still on the first letter of the pattern
