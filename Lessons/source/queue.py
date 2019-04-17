@@ -29,7 +29,8 @@ class LinkedQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(1) – Because we always add to the same place in stack.
+        Running time: O(1) - Because we always add to the same place in deque
+        and only modify one node.
         """
         self.list.append(item)
 
@@ -51,7 +52,8 @@ class LinkedQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(1) – Because we always remove from the same place in queue.
+        Running time: O(1) - Because we always add to the same place in deque
+        and only modify one node.
         """
         if self.list.is_empty():
             raise ValueError("There is nothing in the queue.")
@@ -92,7 +94,8 @@ class ArrayQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(1) – Because we always add to the same place in stack.
+        Running time: O(1) - Because we always add to the same place in deque
+        and only modify one value.
         """
         self.list.append(item)
 
@@ -106,7 +109,8 @@ class ArrayQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(1) – Because we always remove from the same place in queue.
+        Running time: O(n) worst case – Because you have to change the index of
+        every other item in the list.
         """
         if self.is_empty():
             raise ValueError("That item is not on top of the stack.")

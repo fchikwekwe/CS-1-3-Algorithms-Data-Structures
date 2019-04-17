@@ -17,8 +17,10 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'abc') is True  # all strings contain themselves
         assert contains('aaa', 'a') is True  # multiple occurrences
         assert contains('aaa', 'aa') is True  # overlapping pattern
-        # TODO: Write more positive test cases with assert is True statements
-        # ...
+        assert contains('ababa', 'ab') is True  # another overlapping pattern
+        assert contains('ccccccccccccc', 'cc') is True # longer, with overlapping pattern
+        assert contains('123', '1') is True
+        assert contains('ababa', 'ab') is True
 
     def test_contains_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns
@@ -26,8 +28,7 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'ac') is False  # important to test close cases
         assert contains('abc', 'az') is False  # first letter, but not last
         assert contains('abc', 'abz') is False  # first 2 letters, but not last
-        # TODO: Write more negative test cases with assert is False statements
-        # ...
+        assert contains('abcde', 'abcdef') is False # almost matches, but then doesnt
 
     def test_contains_with_complex_patterns(self):
         # Difficult test cases (examples) with complex patterns
@@ -35,9 +36,7 @@ class StringsTest(unittest.TestCase):
         assert contains('banana', 'na') is True  # multiple occurrences
         assert contains('ababc', 'abc') is True  # overlapping prefix
         assert contains('bananas', 'nas') is True  # overlapping prefix
-        # TODO: Write more test cases that check complex patterns or edge cases
-        # You'll need a lot more than this to test your algorithm's robustness
-        # ...
+        assert contains('12123', '123') is True
 
     def test_find_index_with_matching_patterns(self):
         # Positive test cases (examples) with matching patterns
@@ -116,6 +115,11 @@ class StringsTest(unittest.TestCase):
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
         # ...
+
+    # def test_invalid_inputs(self):
+    #     self.assertRaises(find_all_indexes(12, "12"), Exception)
+    # come back and catch exceptions
+    # https://airbrake.io/blog/python-exception-handling/python-assertionerror
 
 
 if __name__ == '__main__':
