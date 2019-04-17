@@ -5,7 +5,7 @@ def contains(text, pattern):
 
     Time complexity:
     best case O(1) where there is an empty pattern
-    
+
     worst case O(n * m) where n is length of text and m is
     lenght of pattern; because for every letter in text we have
     to check almost every letter in pattern.
@@ -20,7 +20,6 @@ def contains(text, pattern):
     text_length = len(text) - 1
     text_index = 0
 
-    match = None
     # All strings contains empty string
     if pattern == '':
         return True
