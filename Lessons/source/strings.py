@@ -1,7 +1,15 @@
 #!python
 
 def contains(text, pattern):
-    """Return a boolean indicating whether pattern occurs in text."""
+    """Return a boolean indicating whether pattern occurs in text.
+
+    Time complexity:
+    best case O(1) where there is an empty pattern
+    
+    worst case O(n * m) where n is length of text and m is
+    lenght of pattern; because for every letter in text we have
+    to check almost every letter in pattern.
+    """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # Implement contains here (iteratively and/or recursively)
@@ -38,7 +46,12 @@ def contains(text, pattern):
 
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
-    or None if not found."""
+    or None if not found.
+
+    Time complexity: worst case O(n * m) where n is length of text and m is
+    lenght of pattern; because for every letter in text we have
+    to check almost every letter in pattern.
+    """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # Implement find_index here (iteratively and/or recursively)
@@ -79,7 +92,12 @@ def find_index(text, pattern):
 
 def find_all_indexes(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
-    or None if not found."""
+    or None if not found.
+
+    Time complexity: worst case O(n * m) where n is length of text and m is
+    lenght of pattern; because for every letter in text we have
+    to check almost every letter in pattern.
+    """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # Implement find_index here (iteratively and/or recursively)
@@ -115,7 +133,7 @@ def find_all_indexes(text, pattern):
             # If we passed the end of the pattern only then we have found a match
             # reset to find the next match
             if target_index > target_length:
-                # text_index -= 1
+                text_index -= target_length # go back and check the overlapping indices
                 target_index = 0
                 continue
         # If it is not a match and were still on the first letter of the pattern
