@@ -34,7 +34,6 @@ class LinkedStack(object):
         Running time: O(1) – Because we always add to the same place in stack."""
         # Pushing onto the top of the stack
         self.list.prepend(item)
-        print(self.list)
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
@@ -55,7 +54,8 @@ class LinkedStack(object):
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(1) – Because we always remove from the same place in stack."""
+        Running time: O(1) – Because we always remove from the same place in stack.
+        """
         if self.list.is_empty():
             raise ValueError("There is nothing in the stack.")
 
