@@ -11,7 +11,51 @@ class LinkedDeque(object):
         self.list = LinkedList()
         if iterable is not None:
             for item in iterable:
-                self.push(item)
+                self.push_front(item)
+
+    def is_empty(self):
+        """Return True if this stack is empty, or False otherwise."""
+        # will return true if 0 and false otherwise
+        return self.list.is_empty()
+
+    def length(self):
+        """Return the number of items in this stack."""
+        # accessing the size property of LinkedList class
+        return self.list.length()
+
+    def peek_front(self, item):
+        """
+        Time complexity: O(1) because we only have to get data for one node and
+        we are not changing any other nodes.
+        """
+        if self.list.is_empty():
+            return None
+
+        # keep track of the node we're removing
+        node = self.head.tail
+        #  And keep track of the data we're returning
+        data = node.data
+
+        # Return the head's data value
+        print("Peek at front data", data)
+        return data
+
+    def peek_back(self):
+        """
+        Time complexity: O(1) because we only have to get data for one node and
+        we are not changing any other nodes.
+        """
+        if self.list.is_empty():
+            return None
+
+        # keep track of the node we're removing
+        node = self.list.tail
+        #  And keep track of the data we're returning
+        data = node.data
+
+        # Return the head's data value
+        print("Peek at back data", data)
+        return data
 
     def push_front(self, item):
         """
@@ -68,14 +112,39 @@ class ArrayDeque(object):
         self.list = list()
         if iterable is not None:
             for item in iterable:
-                self.push(item)
+                self.push_front(item)
+
+    def is_empty(self):
+        """Return True if this stack is empty, or False otherwise."""
+        return len(self.list) <= 0
+
+    def length(self):
+        """Return the number of items in this stack."""
+        return len(self.list)
+
+    def peek_front(self):
+        """
+        TODO:
+        """
+        if self.is_empty():
+            return None
+        return self.list[0]
+
+    def peek_back(self):
+        """
+        TODO:
+        """
+        if self.is_empty():
+            return None
+        return self.list[-1]
+
 
     def push_front(self, item):
         """
         Running time: O(n) worst case – Because you have to change the index of
         every other item in the list.
         """
-        self.list.append(item, 0)
+        self.list.insert(0, item)
 
     def push_back(self, item):
         """
@@ -101,3 +170,6 @@ class ArrayDeque(object):
         if self.is_empty():
             raise ValueError("That item is not on top of the stack.")
         return self.list.pop()
+
+# Deque = LinkedDeque
+Deque = ArrayDeque
