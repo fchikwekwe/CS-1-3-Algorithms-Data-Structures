@@ -1,5 +1,6 @@
 #!python
 
+
 def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text.
 
@@ -12,34 +13,10 @@ def contains(text, pattern):
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # Implement contains here (iteratively and/or recursively)
-    # Keeping track of target values
-    target_length = len(pattern) - 1
-    target_index = 0
-    # Keeping track of text values
-    text_length = len(text) - 1
-    text_index = 0
 
-    # All strings contains empty string
-    if pattern == '':
+    match_list = find_all_indexes(text, pattern)
+    if len(match_list) > 0:
         return True
-    # Check if we passed the end of the text or the pattern
-    while target_length >= target_index and text_length >= text_index:
-        # Checking if current pattern and text letters match
-        if pattern[target_index] == text[text_index]:
-            target_index += 1
-            text_index += 1
-            # If we passed the end of the pattern only then we have found the match
-            if target_index > target_length:
-                return True
-        # If it is not a match and were still on the first letter of the pattern
-        # then increment text_index
-        elif pattern[target_index] != text[text_index] and target_index == 0:
-            text_index += 1
-        # If it is not a match and were past the first letter of the pattern
-        # reset the pattern index
-        elif pattern[target_index] != text[text_index] and target_index > 0:
-            target_index = 0
 
     return False
 
@@ -53,40 +30,12 @@ def find_index(text, pattern):
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # Implement find_index here (iteratively and/or recursively)
-    # Keeping track of target values
-    target_length = len(pattern) - 1
-    target_index = 0
-    # Keeping track of text values
-    text_length = len(text) - 1
-    text_index = 0
 
-    match = 0
-    # All strings contains empty string
-    if pattern == '':
-        return match
-    # Check if we passed the end of the text or the pattern
-    while target_length >= target_index and text_length >= text_index:
-        #check if zeroth indices of text and pattern match
-        if target_index == 0 and pattern[target_index] == text[text_index]:
-            match = text_index
-        # Checking if current pattern and text letters match
-        if pattern[target_index] == text[text_index]:
-            target_index += 1
-            text_index += 1
-            # If we passed the end of the pattern only then we have found the match
-            if target_index > target_length:
-                return match
-        # If it is not a match and were still on the first letter of the pattern
-        # then increment text_index
-        elif pattern[target_index] != text[text_index] and target_index == 0:
-            text_index += 1
-        # If it is not a match and were past the first letter of the pattern
-        # reset the pattern index
-        elif pattern[target_index] != text[text_index] and target_index > 0:
-            target_index = 0
+    match_list = find_all_indexes(text, pattern)
+    if len(match_list) > 0:
+        return match_list[0]
 
-    return None # pattern not found
+    return None
 
 
 def find_all_indexes(text, pattern):
@@ -179,3 +128,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # print(contains("bbaa", "a"))

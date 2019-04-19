@@ -46,7 +46,7 @@ class LinkedQueue(object):
         data = node.data
 
         # Return the head's data value
-        print("Look at front node's data", data)
+        print("Look at front node's data", node, data)
         return data
 
     def dequeue(self):

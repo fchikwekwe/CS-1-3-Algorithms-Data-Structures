@@ -23,7 +23,7 @@ class LinkedDeque(object):
         # accessing the size property of LinkedList class
         return self.list.length()
 
-    def peek_front(self, item):
+    def peek_front(self):
         """
         Time complexity: O(1) because we only have to get data for one node and
         we are not changing any other nodes.
@@ -32,12 +32,11 @@ class LinkedDeque(object):
             return None
 
         # keep track of the node we're removing
-        node = self.head.tail
+        node = self.list.head
         #  And keep track of the data we're returning
         data = node.data
 
         # Return the head's data value
-        print("Peek at front data", data)
         return data
 
     def peek_back(self):
@@ -54,7 +53,6 @@ class LinkedDeque(object):
         data = node.data
 
         # Return the head's data value
-        print("Peek at back data", data)
         return data
 
     def push_front(self, item):
@@ -171,5 +169,5 @@ class ArrayDeque(object):
             raise ValueError("That item is not on top of the stack.")
         return self.list.pop()
 
-# Deque = LinkedDeque
-Deque = ArrayDeque
+Deque = LinkedDeque
+# Deque = ArrayDeque
