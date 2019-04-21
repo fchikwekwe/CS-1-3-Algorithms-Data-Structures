@@ -10,6 +10,11 @@ def contains(text, pattern):
     worst case O(n * m) where n is length of text and m is
     lenght of pattern; because for every letter in text we have
     to check almost every letter in pattern.
+
+    Space complexity: assuming that the inputs (text, pattern) are not counted,
+    then space complexity of O(l) where l is the length of the match array.
+    We're reusing find_all_indexes so we do have a list holding all matches
+    that is created.
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -27,6 +32,11 @@ def find_index(text, pattern):
     Time complexity: worst case O(n * m) where n is length of text and m is
     lenght of pattern; because for every letter in text we have
     to check almost every letter in pattern.
+
+    Space complexity: assuming that the inputs (text, pattern) and output
+    (first match) are not counted, then space complexity of O(l) where l is the
+    length of the match array. We're reusing find_all_indexes so we do have an
+    list holding all matches that is created. 
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -45,6 +55,10 @@ def find_all_indexes(text, pattern):
     Time complexity: worst case O(n * m) where n is length of text and m is
     lenght of pattern; because for every letter in text we have
     to check almost every letter in pattern.
+
+    Space complexity: assuming that the inputs (text, pattern) and output
+    (match list) are not counted, then space complexity of O(1). We do create
+    four new variables with take up constant space.
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
