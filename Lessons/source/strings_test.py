@@ -87,7 +87,7 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abc', 'abc') == [0]  # all strings contain themselves
         assert find_all_indexes('aaa', 'a') == [0, 1, 2]  # multiple occurrences
         assert find_all_indexes('aaa', 'aa') == [0, 1]  # overlapping pattern
-        assert find_all_indexes('ababababababba', 'ab') == [0, 2, 4, 6, 8, 10]
+        assert find_all_indexes('ababababababba', 'ab') == [0, 2, 4, 6, 8, 10] # many matches
 
     def test_find_all_indexes_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns

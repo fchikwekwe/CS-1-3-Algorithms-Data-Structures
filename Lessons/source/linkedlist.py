@@ -111,6 +111,11 @@ class LinkedList(object):
         # check if index is at the end
         if index == self.size:
             self.append(item)
+            return
+
+        elif index == 0:
+            self.prepend(item)
+            return
 
         node = self.head # start with the head node
         node_index = 0 # counter to keep track of iterations
@@ -124,6 +129,7 @@ class LinkedList(object):
         self.size += 1
         # create a new node
         new_node = Node(item)
+        print(new_node)
         # change next to point to new node
         new_node.next = node.next
         # add the new node at the right index
@@ -195,7 +201,6 @@ class LinkedList(object):
 
         # keep going until you find the node or until end of list
         while node is not None and node.data != old_item:
-            # if
             node = node.next
         if node is None:
             raise ValueError('Item {} not found in list.'.format(old_item))
@@ -261,27 +266,30 @@ def test_linked_list():
     print(ll)
     ll.append('C')
     print(ll)
-    print('head: {}'.format(ll.head))
-    print('tail: {}'.format(ll.tail))
-    print('size: {}'.format(ll.size))
-    print('length: {}'.format(ll.length()))
-
-    print('Getting items by index:')
-    for index in range(ll.size):
-        item = ll.get_at_index(index)
-        print('get_at_index({}): {!r}'.format(index, item))
-
-    print('Deleting items:')
-    ll.delete('B')
-    print(ll)
-    ll.delete('C')
-    print(ll)
-    ll.delete('A')
+    ll.insert_at_index(2, "TEST")
     print(ll)
     print('head: {}'.format(ll.head))
     print('tail: {}'.format(ll.tail))
     print('size: {}'.format(ll.size))
     print('length: {}'.format(ll.length()))
+
+
+    # print('Getting items by index:')
+    # for index in range(ll.size):
+    #     item = ll.get_at_index(index)
+    #     print('get_at_index({}): {!r}'.format(index, item))
+    #
+    # print('Deleting items:')
+    # ll.delete('B')
+    # print(ll)
+    # ll.delete('C')
+    # print(ll)
+    # ll.delete('A')
+    # print(ll)
+    # print('head: {}'.format(ll.head))
+    # print('tail: {}'.format(ll.tail))
+    # print('size: {}'.format(ll.size))
+    # print('length: {}'.format(ll.length()))
 
 
 if __name__ == '__main__':
