@@ -11,6 +11,13 @@ class Set(object):
                 self.add(element)
                 print(self.hashtable)
 
+    def __len__(self):
+        """
+        Return the number of elements in set.
+        TODO: Analyze Time and Space Complexity
+        """
+        return self.size
+
     def __contains__(self, element):
         """
         Return a boolean indicating whether element is in this set using the
@@ -18,6 +25,23 @@ class Set(object):
         TODO: Analyze Time and Space Complexity
         """
         return self.hashtable.contains(element) # should return True or False
+
+    def __repr__(self):
+        string = "{"
+        # get string value for all keys in hashtable
+        items = map(repr, self.hashtable.keys())
+
+        # make items into list to iterate over range
+        item_list = list(items)
+        # store length of item list
+        item_len = len(item_list)
+
+        for i in range(item_len):
+            string += item_list[i]
+            if i < item_len - 1:
+                string += ", "
+
+        return string + "}"
 
     def add(self, element):
         """
@@ -66,11 +90,4 @@ class Set(object):
 if __name__ == '__main__':
     elements = [1, 2, 3]
     new_set = Set(elements)
-    if 1 in new_set:
-        print(True)
-    else:
-        print(False)
-    new_set.add("something")
-    print(new_set.hashtable)
-    new_set.remove(2)
-    print(new_set.hashtable)
+    print(new_set)
