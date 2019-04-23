@@ -36,7 +36,7 @@ def find_index(text, pattern):
     Space complexity: assuming that the inputs (text, pattern) and output
     (first match) are not counted, then space complexity of O(l) where l is the
     length of the match array. We're reusing find_all_indexes so we do have an
-    list holding all matches that is created. 
+    list holding all matches that is created.
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
