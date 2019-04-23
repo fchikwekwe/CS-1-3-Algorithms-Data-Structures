@@ -4,34 +4,36 @@ from hashtable import HashTable
 class Set(object):
 
     def __init__(self, elements=None):
-        pass
+        self.hashtable = HashTable() # start with whatever elements are passed in
+        self.size = 0 # property that tracks number of elements in constant time
+        if elements is not None:
+            for element in elements:
+                self.add(element)
+                print(self.hashtable)
 
-    def size(self):
+    def __contains__(self, element):
         """
-        property that tracks the number of elements in constant time
-        """
-        pass
-
-    def contains(self, element):
-        """
-        return a boolean indicating whether element is in this set
+        Return a boolean indicating whether element is in this set using the
+        built in Python "in" keyword
         TODO: Analyze Time and Space Complexity
         """
-        pass
+        return self.hashtable.contains(element) # should return True or False
 
     def add(self, element):
         """
         add element to this set, if not present already
         TODO: Analyze Time and Space Complexity
         """
-        pass
+        self.hashtable.set(element, None)
+        self.size += 1 # increment size property
 
     def remove(self, element):
         """
         remove element from this set, if present, or else raise KeyError
         TODO: Analyze Time and Space Complexity
         """
-        pass
+        self.hashtable.delete(element)
+        self.size -= 1 # decrement size property
 
     def union(self, other_set):
         """
@@ -60,3 +62,15 @@ class Set(object):
         TODO: Analyze Time and Space Complexity
         """
         pass
+
+if __name__ == '__main__':
+    elements = [1, 2, 3]
+    new_set = Set(elements)
+    if 1 in new_set:
+        print(True)
+    else:
+        print(False)
+    new_set.add("something")
+    print(new_set.hashtable)
+    new_set.remove(2)
+    print(new_set.hashtable)
