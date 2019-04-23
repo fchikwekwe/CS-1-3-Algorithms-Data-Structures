@@ -142,7 +142,7 @@ class HashTable(object):
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
-    def _resize(self, new_size=None):
+    def _resize(self, new_size=None, linear=False):
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
@@ -166,8 +166,32 @@ class HashTable(object):
         # rehash them into a new bucket index based on the new size
         for key, value in pairs_list:
             # this will reset the overall size
-            self.set(key, value)
+            if not linear:
+                self.set(key, value)
+            else:
+                self.linear_set(key, value)
 
+    def linear_set(self, key, value):
+        """Insert or update the given key with its associated value using
+        linear probing"""
+        # Find the bucket the given key belongs in
+        index = self._bucket_index(key)
+        bucket = self.buckets[index]
+        # Find the entry with the given key in that bucket, if one exists
+        # Check if an entry with the given key exists in that bucket
+        entry = bucket.find(lambda key_value: key_value[0] == key)
+        if entry is not None:  # Found
+            # In this case, the given key's value is being updated
+            # Remove the old key-value entry from the bucket first
+            bucket.delete(entry)
+            self.size -= 1 # decrement size property
+        # Insert the new key-value entry into the bucket in either case
+        bucket.append((key, value))
+        self.size += 1 # increment size property
+        # Check if the load factor exceeds a threshold such as 0.75
+        if self.load_factor() > 0.75:
+            # If so, automatically resize to reduce the load factor
+            self._resize()
 
 def test_hash_table():
     ht = HashTable(4)
