@@ -36,7 +36,7 @@ class HashTable(object):
         # Collect all keys in each of the buckets
         all_keys = []
         for bucket in self.buckets:
-            for key, value in bucket.items():
+            for key, _ in bucket.items():
                 all_keys.append(key)
         return all_keys
 
@@ -46,7 +46,7 @@ class HashTable(object):
         # Collect all values in each of the buckets
         all_values = []
         for bucket in self.buckets:
-            for key, value in bucket.items():
+            for _, value in bucket.items():
                 all_values.append(value)
         return all_values
 
@@ -65,15 +65,13 @@ class HashTable(object):
         # Count number of key-value entries in each of the buckets
         if self.size:
             return self.size
-        else:
-            item_count = 0
-            for bucket in self.buckets:
-                item_count += bucket.length()
-            return item_count
+
+        item_count = 0
+        for bucket in self.buckets:
+            item_count += bucket.length()
+        return item_count
             # Equivalent to this list comprehension:
-            return sum(bucket.length() for bucket in self.buckets)
-
-
+            # return sum(bucket.length() for bucket in self.buckets)
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
@@ -100,8 +98,9 @@ class HashTable(object):
             assert isinstance(entry, tuple)
             assert len(entry) == 2
             return entry[1]
-        else:  # Not found
-            raise KeyError('Key not found: {}'.format(key))
+
+        # Not found
+        raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
@@ -174,6 +173,9 @@ class HashTable(object):
     def linear_set(self, key, value):
         """Insert or update the given key with its associated value using
         linear probing"""
+
+        # use modulus to wrap around to the 0th index
+
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
