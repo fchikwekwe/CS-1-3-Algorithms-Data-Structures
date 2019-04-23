@@ -224,21 +224,38 @@ class DoublyLinkedList(object):
             if node is not self.head and node is not self.tail:
                 # Update the previous node to skip around the found node
                 node.previous.next = node.next
+                # Update the next node to skip around the found node
+                node.next.previous = node.previous
                 # Unlink the found node from its next node
                 node.next = None
+                # Unlink the found node from its previous node
+                node.previous = None
             # Check if we found a node at the head
-            if node is self.head:
-                # Update head to the next node
-                self.head = node.next
-                self.head.previous = None # might not be necessary
+            elif node is self.head:
+                if node.next:
+                    # Update head to the next node
+                    self.head = node.next
+                    self.head.previous = None # Unlink previous node
+                else:
+                    self.head = None
+                    self.tail = None
             # Check if we found a node at the tail
-            if node is self.tail:
+            else: # node is self.tail
+                print("its the tail", self.tail)
                 # Check if there is a node before the found node
                 if node.previous is not None:
                     # Unlink the previous node from the found node
                     node.previous.next = None
-                # Update tail to the previous node regardless
-                self.tail = node.previous
+                    if node.previous:
+                        print("previous node", node.previous)
+                        # Update tail to the previous node
+                        self.tail = node.previous
+                    else:
+                        print("no previous node")
+                        self.tail = None
+                    # Unlink found node node
+                    node.previous = None
+                print("tail", self.tail)
             # update size property
             self.size -= 1
         else:

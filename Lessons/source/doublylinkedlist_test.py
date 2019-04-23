@@ -164,18 +164,22 @@ class DoublyLinkedListTest(unittest.TestCase):
     def test_delete(self):
         dll = DoublyLinkedList(['A', 'B', 'C'])
         dll.delete('A')
+        print(dll)
         assert dll.head.data == 'B'  # new head
         assert dll.tail.data == 'C'  # unchanged
         assert dll.size == 2
         dll.delete('C')
+        print(dll)
         assert dll.head.data == 'B'  # unchanged
         assert dll.tail.data == 'B'  # new tail
         assert dll.size == 1
         dll.delete('B')
+        print(dll)
         assert dll.head is None  # new head
         assert dll.tail is None  # new head
         assert dll.size == 0
         with self.assertRaises(ValueError):
+            print(dll)
             dll.delete('X')  # item not in list
 
 
