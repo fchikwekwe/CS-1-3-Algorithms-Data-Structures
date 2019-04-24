@@ -26,22 +26,10 @@ class Set(object):
         """
         return self.hashtable.contains(element) # should return True or False
 
-    def __repr__(self):
-        string = "{"
-        # get string value for all keys in hashtable
-        items = map(repr, self.hashtable.keys())
-
-        # make items into list to iterate over range
-        item_list = list(items)
-        # store length of item list
-        item_len = len(item_list)
-
-        for i in range(item_len):
-            string += item_list[i]
-            if i < item_len - 1:
-                string += ", "
-
-        return string + "}"
+    def __str__(self):
+        """Return a formatted string representation of this set."""
+        items = ['{!r}'.format(key) for key in self.hashtable.keys()]
+        return "{" + ', '.join(items) + "}"
 
     def add(self, element):
         """
@@ -64,30 +52,61 @@ class Set(object):
         return a new set that is the union of this set and other_set
         TODO: Analyze Time and Space Complexity
         """
-        pass
+        results = Set()
+        for element in self.hashtable.keys():
+            results.add(element)
+
+        for element in other_set.hashtable.keys():
+            results.add(element)
+
+        return results
 
     def intersection(self, other_set):
         """
         return a new set that is the intersection of this set and other_set
         TODO: Analyze Time and Space Complexity
         """
-        pass
+        results = Set()
+        for element in self.hashtable.keys():
+            if element in other_set.hashtable.keys():
+                results.add(element)
+        return results
 
     def difference(self, other_set):
         """
         return a new set that is the difference of this set and other_set
         TODO: Analyze Time and Space Complexity
         """
-        pass
+        results = Set()
+        for element in self.hashtable.keys():
+            if element not in other_set.hashtable.keys():
+                results.add(element)
+
+        for element in other_set.hashtable.keys():
+            if element not in self.hashtable.keys():
+                results.add(element)
+
+        return results
 
     def is_subset(self, other_set):
         """
         return a boolean indicating whether other_set is a subset of this set
         TODO: Analyze Time and Space Complexity
         """
-        pass
+        for element in self.hashtable.keys():
+            if element not in other_set.hashtable.keys():
+                return False
+        # all items in self are also in set
+        return True
 
 if __name__ == '__main__':
     elements = [1, 2, 3]
     new_set = Set(elements)
-    print(new_set)
+
+    other_elements = [3, 4, 5]
+    other_set = Set(other_elements)
+
+    print(new_set.union(other_set))
+    print(new_set.intersection(other_set))
+    print(new_set.difference(other_set))
+    print(new_set.is_subset(other_set))

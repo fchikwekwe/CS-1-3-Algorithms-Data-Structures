@@ -19,17 +19,32 @@ class SetTest(unittest.TestCase):
         assert other_set.size == 4
         assert len(other_set) == 4
 
-    def test_hashtable(self):
-        pass
-
-    def test_size(self):
-        pass
-
     def test_contains(self):
-        pass
+        s = Set()
+        assert s.size == 0
+        assert s.__contains__(1) == False
+        s.add(1)
+        s.add(2)
+        assert s.size == 2
+        assert s.__contains__(1) == True
+        assert s.__contains__(4) == False
+        s.remove(1)
+        assert s.size == 1
+        assert s.__contains__(1) == False
+        assert s.__contains__(2) == True
 
-    def test_repr(self):
-        pass
+    def test_str(self):
+        s = Set([1, 2, 3, 4])
+        assert s.size == 4
+        assert s.__str__() == "{1, 2, 3, 4}"
+
+        t = Set(["a", "b", "c"])
+        assert t.size == 3
+        assert t.__str__() == "{'a', 'b', 'c'}"
+
+        t.remove('b')
+        assert t.size == 2
+        assert t.__str__() == "{'a', 'c'}"
 
     def test_add(self):
         pass
