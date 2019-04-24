@@ -9,7 +9,6 @@ class Set(object):
         if elements is not None:
             for element in elements:
                 self.add(element)
-                print(self.hashtable)
 
     def __len__(self):
         """
@@ -75,6 +74,7 @@ class Set(object):
     def difference(self, other_set):
         """
         return a new set that is the difference of this set and other_set
+        In either set, but not in both. 
         TODO: Analyze Time and Space Complexity
         """
         results = Set()
@@ -102,6 +102,8 @@ class Set(object):
 if __name__ == '__main__':
     elements = [1, 2, 3]
     new_set = Set(elements)
+    new_set.add(3)
+    print(new_set)
 
     other_elements = [3, 4, 5]
     other_set = Set(other_elements)
