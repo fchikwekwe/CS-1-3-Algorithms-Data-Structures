@@ -30,6 +30,10 @@ class Set(object):
         items = ['{!r}'.format(key) for key in self.hashtable.keys()]
         return "{" + ', '.join(items) + "}"
 
+    def __iter__(self):
+        # implement this 
+        pass
+
     def add(self, element):
         """
         add element to this set, if not present already
@@ -66,12 +70,20 @@ class Set(object):
         TODO: Analyze Time and Space Complexity
         """
         results = Set()
-        for element in self.hashtable.keys():
-            if element in other_set.hashtable.keys():
+
+        if self.size > other_set.size: 
+            smaller = other_set
+            bigger = self
+        else: 
+            bigger = self
+            smaller = other_set
+
+        for element in smaller:
+            if element in bigger:
                 results.add(element)
         return results
 
-    def difference(self, other_set):
+    def difference(self, other_set): #actually symmetric difference
         """
         return a new set that is the difference of this set and other_set
         In either set, but not in both. 
@@ -82,9 +94,9 @@ class Set(object):
             if element not in other_set.hashtable.keys():
                 results.add(element)
 
-        for element in other_set.hashtable.keys():
-            if element not in self.hashtable.keys():
-                results.add(element)
+        # for element in other_set.hashtable.keys():
+        #     if element not in self.hashtable.keys():
+        #         results.add(element)
 
         return results
 
