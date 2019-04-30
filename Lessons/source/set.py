@@ -31,7 +31,7 @@ class Set(object):
         return "{" + ', '.join(items) + "}"
 
     def __iter__(self):
-        # implement this 
+        # TODO: implement __iter__ method to make method iterable 
         pass
 
     def add(self, element):
@@ -66,11 +66,12 @@ class Set(object):
 
     def intersection(self, other_set):
         """
-        return a new set that is the intersection of this set and other_set
-        TODO: Analyze Time and Space Complexity
+        Time complexity: O(n) where n is the length of the smaller set
+        Space complexity: O(1) because no new space is created except output. 
         """
         results = Set()
 
+        # figure out which set is shorter
         if self.size > other_set.size: 
             smaller = other_set
             bigger = self
@@ -78,32 +79,38 @@ class Set(object):
             bigger = self
             smaller = other_set
 
+        # iterate only over the smaller set
         for element in smaller:
             if element in bigger:
                 results.add(element)
         return results
 
-    def difference(self, other_set): #actually symmetric difference
+    def difference(self, other_set):
         """
-        return a new set that is the difference of this set and other_set
-        In either set, but not in both. 
-        TODO: Analyze Time and Space Complexity
+        Time complexity: O(n) where n is the length of the smaller set
+        Space complexity: O(1) because no new space is created except output. 
         """
         results = Set()
-        for element in self.hashtable.keys():
-            if element not in other_set.hashtable.keys():
+
+        # figure out which set is shorter
+        if self.size > other_set.size: 
+            smaller = other_set
+            bigger = self
+        else: 
+            bigger = self
+            smaller = other_set
+
+        # iterate only over the smaller set
+        for element in smaller.hashtable.keys():
+            if element not in bigger.hashtable.keys():
                 results.add(element)
-
-        # for element in other_set.hashtable.keys():
-        #     if element not in self.hashtable.keys():
-        #         results.add(element)
-
         return results
 
     def is_subset(self, other_set):
         """
-        return a boolean indicating whether other_set is a subset of this set
-        TODO: Analyze Time and Space Complexity
+        Time complexity: O(n) where n is the length of self. 
+        Space complexity: O(1) because no new space is created except input
+        and output.
         """
         for element in self.hashtable.keys():
             if element not in other_set.hashtable.keys():
