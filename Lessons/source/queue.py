@@ -1,4 +1,4 @@
-#!python
+7#!python
 
 from linkedlist import LinkedList
 
@@ -17,13 +17,13 @@ class LinkedQueue(object):
 
     def __repr__(self):
         """Return a string representation of this queue."""
-        return 'Queue({} items, front={})'.format(self.length(), self.front())
+        return 'Queue({} items, front={})'.format(self.lh(), self.front())
 
     def is_empty(self):
         """Return True if this queue is empty, or False otherwise."""
         return self.list.is_empty()
 
-    def length(self):
+    def lh(self):
         """Return the number of items in this queue."""
         return self.list.length()
 
