@@ -6,6 +6,7 @@ class Set(object):
     def __init__(self, elements=None):
         self.hashtable = HashTable() # start with whatever elements are passed in
         self.size = 0 # property that tracks number of elements in constant time
+        self.index = -1
         if elements is not None:
             for element in elements:
                 self.add(element)
@@ -29,10 +30,6 @@ class Set(object):
         """Return a formatted string representation of this set."""
         items = ['{!r}'.format(key) for key in self.hashtable.keys()]
         return "{" + ', '.join(items) + "}"
-
-    def __iter__(self):
-        # TODO: implement __iter__ method to make method iterable 
-        pass
 
     def add(self, element):
         """
