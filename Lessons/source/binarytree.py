@@ -227,6 +227,10 @@ class BinarySearchTree(object):
         # TODO: Use helper methods and break this algorithm down into 3 cases
         # based on how many children the node containing the given item has and
         # implement new helper methods for subtasks of the more complex cases
+        data = self.search(item)
+        if data is None: 
+            raise ValueError("Requested item was not found in binary search tree.")
+        self._find_parent_node_recursive(item, )
 
 
     # def items_in_order(self):
