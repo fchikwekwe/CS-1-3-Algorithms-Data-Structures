@@ -14,7 +14,8 @@ class Set(object):
     def __len__(self):
         """
         Return the number of elements in set.
-        TODO: Analyze Time and Space Complexity
+        Time Complexity O(1) all cases
+        Space complexity O(1) all cases because it is just accessing a property
         """
         return self.size
 
@@ -22,19 +23,22 @@ class Set(object):
         """
         Return a boolean indicating whether element is in this set using the
         built in Python "in" keyword
-        TODO: Analyze Time and Space Complexity
+        Time Complexity O(1) average because hashtable lookup is constant operation
+        Space complexity O(1) all cases
         """
         return self.hashtable.contains(element) # should return True or False
 
     def __str__(self):
         """Return a formatted string representation of this set."""
-        items = ['{!r}'.format(key) for key in self.hashtable.keys()]
+        items = ['{!r}'.format(key) for key in self.hashtable.key s()]
         return "{" + ', '.join(items) + "}"
 
     def add(self, element):
         """
         add element to this set, if not present already
-        TODO: Analyze Time and Space Complexity
+        Time complexity: O(1) because hashtable set operation is constant time
+        Space complexity: O(1) average because only one new space in hashtable is 
+        created on average. 
         """
         self.hashtable.set(element, None)
         self.size += 1 # increment size property
@@ -42,7 +46,8 @@ class Set(object):
     def remove(self, element):
         """
         remove element from this set, if present, or else raise KeyError
-        TODO: Analyze Time and Space Complexity
+        Time complexity: O(1) because hashtable delete operation is constant time
+        Space complexity: O(1)
         """
         self.hashtable.delete(element)
         self.size -= 1 # decrement size property
@@ -50,7 +55,9 @@ class Set(object):
     def union(self, other_set):
         """
         return a new set that is the union of this set and other_set
-        TODO: Analyze Time and Space Complexity
+        Time complexity: O(n + m) where n is the length of sefl and m is the length
+        of other_set
+        Space complexity: O(1) because no new space is created except output. 
         """
         results = Set()
         for element in self.hashtable.keys():

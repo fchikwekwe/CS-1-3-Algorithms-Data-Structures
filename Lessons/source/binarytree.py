@@ -220,13 +220,13 @@ class BinarySearchTree(object):
             # Recursively descend to the node's right child, if it exists
             return self._find_parent_node_recursive(item, node=node.right, parent=node)
 
-    # def delete(self, item):
-    #     """Remove given item from this tree, if present, or raise ValueError.
-    #     TODO: Best case running time: ??? under what conditions?
-    #     TODO: Worst case running time: ??? under what conditions?"""
-    #     # TODO: Use helper methods and break this algorithm down into 3 cases
-    #     # based on how many children the node containing the given item has and
-    #     # implement new helper methods for subtasks of the more complex cases
+    def delete(self, item):
+        """Remove given item from this tree, if present, or raise ValueError.
+        TODO: Best case running time: ??? under what conditions?
+        TODO: Worst case running time: ??? under what conditions?"""
+        # TODO: Use helper methods and break this algorithm down into 3 cases
+        # based on how many children the node containing the given item has and
+        # implement new helper methods for subtasks of the more complex cases
 
 
     # def items_in_order(self):
