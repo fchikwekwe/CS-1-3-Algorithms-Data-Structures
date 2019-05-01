@@ -137,13 +137,13 @@ class SetTest(unittest.TestCase):
         b = Set([8, 9, 0, 1])
 
         a_or_b = a.difference(b)
-
+        print("a or b", a_or_b)
         assert a_or_b.__contains__(6) == True
         assert a_or_b.__contains__(7) == True
         assert a_or_b.__contains__(8) == False
         assert a_or_b.__contains__(9) == False
 
-        a.remove(8)
+        b.remove(8)
 
         a_or_b = a.difference(b)
 
@@ -160,7 +160,7 @@ class SetTest(unittest.TestCase):
         a_or_b = a.difference(b)
 
         assert a_or_b.__contains__('f') == False
-        assert a_or_b.__contains__(3.0) == True
+        assert a_or_b.__contains__(3.0) == False
         assert a_or_b.__contains__(3.1) == True
         assert a_or_b.__contains__(None) == True
 

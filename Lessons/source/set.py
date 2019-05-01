@@ -77,30 +77,23 @@ class Set(object):
             smaller = other_set
 
         # iterate only over the smaller set
-        for element in smaller:
+        for element in smaller.hashtable.keys():
             if element in bigger:
                 results.add(element)
         return results
 
     def difference(self, other_set):
         """
-        Time complexity: O(n) where n is the length of the smaller set
+        Time complexity: O(n) where n is the length of self. 
         Space complexity: O(1) because no new space is created except output. 
         """
         results = Set()
 
-        # figure out which set is shorter
-        if self.size > other_set.size: 
-            smaller = other_set
-            bigger = self
-        else: 
-            bigger = self
-            smaller = other_set
-
         # iterate only over the smaller set
-        for element in smaller.hashtable.keys():
-            if element not in bigger.hashtable.keys():
+        for element in self.hashtable.keys():
+            if element not in other_set.hashtable.keys():
                 results.add(element)
+        
         return results
 
     def is_subset(self, other_set):
