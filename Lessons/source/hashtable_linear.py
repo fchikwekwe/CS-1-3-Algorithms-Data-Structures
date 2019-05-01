@@ -1,7 +1,9 @@
  #!python
 
-from linkedlist import LinkedList
-
+"""
+Implementation of hashtable collision avoidance with linear probing. 
+This is still a WIP. I'm aware that its not yet functional. 
+"""
 
 class HashTableLinear(object):
 

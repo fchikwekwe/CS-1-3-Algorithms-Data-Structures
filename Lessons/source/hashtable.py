@@ -25,7 +25,7 @@ class HashTable(object):
 
     def load_factor(self):
         """Return the load factor, the ratio of number of entries to buckets.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O(1) all cases"""
         if len(self.buckets) == 0:
             raise AssertionError("HashTable is empty.")
         return self.size / len(self.buckets)
@@ -141,7 +141,7 @@ class HashTable(object):
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
-    def _resize(self, new_size=None, linear=False):
+    def _resize(self, new_size=None):
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
@@ -164,11 +164,8 @@ class HashTable(object):
         # Insert each key-value entry into the new list of buckets, which will
         # rehash them into a new bucket index based on the new size
         for key, value in pairs_list:
-            # this will reset the overall size
-            if not linear:
-                self.set(key, value)
-            else:
-                self.linear_set(key, value)
+        # this will reset the overall size
+            self.set(key, value)
 
 def test_hash_table():
     ht = HashTable(4)
