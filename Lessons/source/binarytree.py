@@ -422,7 +422,7 @@ class BinarySearchTree(object):
         # Loop until deque is empty
         while deque.length() > 0:
             # Pop node at front of deque
-            node = deque.pop_front()
+            node = deque.pop_front()\
             # Visit this node's data with given function
             visit(node.data)
             # Enqueue this node's left child, if it exists

@@ -30,7 +30,7 @@ class Set(object):
 
     def __str__(self):
         """Return a formatted string representation of this set."""
-        items = ['{!r}'.format(key) for key in self.hashtable.key s()]
+        items = ['{!r}'.format(key) for key in self.hashtable.keys()]
         return "{" + ', '.join(items) + "}"
 
     def add(self, element):
