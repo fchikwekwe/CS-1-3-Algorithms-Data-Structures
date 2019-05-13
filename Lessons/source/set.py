@@ -55,7 +55,7 @@ class Set(object):
     def union(self, other_set):
         """
         return a new set that is the union of this set and other_set
-        Time complexity: O(n + m) where n is the length of sefl and m is the length
+        Time complexity: O(n + m) where n is the length of self and m is the length
         of other_set
         Space complexity: O(1) because no new space is created except output. 
         """
@@ -76,7 +76,7 @@ class Set(object):
         results = Set()
 
         # figure out which set is shorter
-        if self.size > other_set.size: 
+        if self.size >= other_set.size: 
             smaller = other_set
             bigger = self
         else: 
@@ -98,7 +98,7 @@ class Set(object):
 
         # iterate only over the smaller set
         for element in self.hashtable.keys():
-            if element not in other_set.hashtable.keys():
+            if element not in other_set:
                 results.add(element)
         
         return results
