@@ -96,7 +96,7 @@ class Set(object):
         """
         results = Set()
 
-        # iterate only over the smaller set
+        # iterate over self
         for element in self.hashtable.keys():
             if element not in other_set:
                 results.add(element)
